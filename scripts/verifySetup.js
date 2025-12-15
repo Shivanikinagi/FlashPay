@@ -8,7 +8,7 @@
 const fs = require('fs');
 const path = require('path');
 
-console.log('\n🔍 Flash Pay - Setup Verification\n');
+console.log('\n🔍 VoidTx - Setup Verification\n');
 console.log('═══════════════════════════════════════════════════════════\n');
 
 let errors = 0;
@@ -42,8 +42,8 @@ check('package.json exists', fs.existsSync('package.json'));
 check('Dependencies installed (node_modules)', fs.existsSync('node_modules'), true);
 
 // Check core files
-check('Smart Contract exists (contracts/FlashPay.sol)', 
-  fs.existsSync('contracts/FlashPay.sol'));
+check('Smart Contract exists (contracts/VoidTx.sol)', 
+  fs.existsSync('contracts/VoidTx.sol'));
 
 check('Deployment script exists (scripts/deploy.js)', 
   fs.existsSync('scripts/deploy.js'));
@@ -51,8 +51,8 @@ check('Deployment script exists (scripts/deploy.js)',
 check('Test script exists (scripts/testTransaction.js)', 
   fs.existsSync('scripts/testTransaction.js'));
 
-check('Test file exists (test/FlashPay.test.js)', 
-  fs.existsSync('test/FlashPay.test.js'));
+check('Test file exists (test/VoidTx.test.js)', 
+  fs.existsSync('test/VoidTx.test.js'));
 
 check('Backend server exists (backend/server.js)', 
   fs.existsSync('backend/server.js'));

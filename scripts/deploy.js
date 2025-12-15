@@ -30,15 +30,15 @@ async function main() {
     process.exit(1);
   }
 
-  // Deploy FlashPay contract
-  console.log("📦 Deploying FlashPay contract...");
-  const FlashPay = await hre.ethers.getContractFactory("FlashPay");
-  const flashPay = await FlashPay.deploy();
+  // Deploy VoidTx contract
+  console.log("📦 Deploying VoidTx contract...");
+  const VoidTx = await hre.ethers.getContractFactory("VoidTx");
+  const voidTx = await VoidTx.deploy();
   
-  await flashPay.waitForDeployment();
-  const contractAddress = await flashPay.getAddress();
+  await voidTx.waitForDeployment();
+  const contractAddress = await voidTx.getAddress();
 
-  console.log("✅ FlashPay deployed successfully!");
+  console.log("✅ VoidTx deployed successfully!");
   console.log(`📍 Contract Address: ${contractAddress}\n`);
 
   // Save deployment information

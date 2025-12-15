@@ -6,7 +6,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { parseCSV } from './csvParser';
-import FlashPayAPI from './apiClient';
+import VoidTxAPI from './apiClient';
 import { 
   splitEqually, 
   getAvailableTemplates, 
@@ -81,7 +81,7 @@ function BatchPaymentForm({ walletAddress, onSubmit, onDisconnect, initialRecipi
   useEffect(() => {
     const checkBackend = async () => {
       try {
-        await FlashPayAPI.checkHealth();
+        await VoidTxAPI.checkHealth();
         setBackendStatus('connected');
       } catch (err) {
         setBackendStatus('disconnected');
@@ -124,7 +124,7 @@ function BatchPaymentForm({ walletAddress, onSubmit, onDisconnect, initialRecipi
           amount: r.amount
         }));
         
-        const estimate = await FlashPayAPI.estimateCost(payments);
+        const estimate = await VoidTxAPI.estimateCost(payments);
         setEstimatedCost(estimate);
       } catch (err) {
         console.warn('Cost estimation failed:', err.message);

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * FlashPay Integration Verification Script
+ * VoidTx Integration Verification Script
  * Tests backend-frontend integration
  */
 
@@ -76,7 +76,7 @@ async function checkContractStats() {
 function checkFiles() {
   const filesToCheck = [
     'frontend-utils/apiClient.js',
-    'frontend-utils/FlashPayApp.jsx',
+    'frontend-utils/VoidTxApp.jsx',
     'frontend-utils/BatchPaymentForm.jsx',
     'frontend-utils/TransactionStatus.jsx',
     '.env.local',
@@ -95,7 +95,7 @@ function checkFiles() {
 
 async function main() {
   log('\n╔════════════════════════════════════════════════════════════╗', 'blue');
-  log('║  FlashPay Backend-Frontend Integration Verification       ║', 'blue');
+  log('║  VoidTx Backend-Frontend Integration Verification         ║', 'blue');
   log('╚════════════════════════════════════════════════════════════╝\n', 'blue');
 
   // Check files

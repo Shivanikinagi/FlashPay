@@ -52,7 +52,7 @@ function ReceiptPage({
     if (navigator.share) {
       try {
         await navigator.share({
-          title: 'FlashPay Transaction Receipt',
+          title: 'VoidTx Transaction Receipt',
           text: `Payment sent to ${recipients.length} recipient${recipients.length !== 1 ? 's' : ''}`,
           url: shareableLink
         });

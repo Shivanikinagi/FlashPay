@@ -1,7 +1,7 @@
 {
-  "name": "flashpay",
+  "name": "voidtx",
   "version": "1.0.0",
-  "description": "Flash Pay - Batch Payment System on Monad Testnet",
+  "description": "VoidTx - Batch Payment System on Monad Testnet",
   "main": "index.js",
   "scripts": {
     "dev": "vite",
@@ -32,7 +32,7 @@
     "batch-payments",
     "web3"
   ],
-  "author": "Flash Pay Team",
+  "author": "VoidTx Team",
   "license": "MIT",
   "devDependencies": {
     "@nomicfoundation/hardhat-chai-matchers": "^2.0.0",

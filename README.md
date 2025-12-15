@@ -1,16 +1,15 @@
-# ⚡ FlashPay - Batch Payment System
+# ⚡ VoidTx - Batch Payment System
 
-Send crypto to multiple recipients in ONE transaction. Save 70% on gas fees.
+Send crypto to multiple recipients in ONE transaction.
 
 ## What It Does
 
-FlashPay lets you pay up to 100 people in a single transaction instead of sending 100 separate transactions. If any payment fails, it continues with the rest and refunds you automatically.
+VoidTx lets you pay up to 100 people in a single transaction instead of sending 100 separate transactions. If any payment fails, it continues with the rest and refunds you automatically.
 
 **Use Cases:** Payroll, airdrops, prize distributions, DAO payments
 
 ## Key Features
 
-- ⚡ **70% Gas Savings** - Batch 100 payments for the cost of ~3 individual transfers
 - 🛡️ **Fault Tolerant** - Failed payments don't stop the batch
 - 💰 **Auto Refunds** - Failed amounts returned automatically
 - 📊 **Production Ready** - 20+ tests passing, REST API included
@@ -22,9 +21,9 @@ FlashPay lets you pay up to 100 people in a single transaction instead of sendin
 ## 📁 Project Structure
 
 ```
-flashpay/
+voidtx/
 ├── contracts/
-│   ├── FlashPay.sol              # Main batch payment contract
+│   ├── VoidTx.sol               # Main batch payment contract
 │   └── test/
 │       └── RejectPayment.sol     # Test helper contract
 ├── scripts/
@@ -36,12 +35,12 @@ flashpay/
 │   ├── accountAbstractionService.js # Gasless transaction service
 │   └── eventReader.js            # Event monitoring utility
 ├── frontend-utils/
-│   ├── FlashPayApp.jsx           # Main React application
+│   ├── VoidTxApp.jsx            # Main React application
 │   ├── BatchPaymentForm.jsx      # Payment form component
 │   ├── WalletConnector.jsx       # Wallet connection utilities
 │   ├── csvParser.js              # CSV upload processor
 │   ├── templates.js              # Payment templates
-│   └── dashboard.js              # Analytics dashboard
+│   └── dashboard.js              # Analytics dashboard (removed)
 ├── deployments/                  # Deployment artifacts (auto-generated)
 ├── hardhat.config.js             # Hardhat configuration
 ├── package.json                  # Dependencies
@@ -75,31 +74,13 @@ npm run dev
 
 ---
 
-## 📊 Smart Contract
-
-**Main Function:**
-```solidity
-batchPay(Payment[] payments) 
-// Send to multiple recipients in one transaction
-```
-
 **Features:**
 - Validates inputs (max 100 recipients, min 0.0001 ETH per payment)
 - Continues processing even if individual payments fail
 - Auto-refunds failed amounts
 - Emits detailed events for tracking
 
-**Events:**
-- `BatchPaymentInitiated` - Batch started
-- `PaymentSuccess` - Individual payment succeeded
-- `PaymentFailed` - Individual payment failed
-- `BatchPaymentCompleted` - Batch finished
-
 ---
-
-## 🔌 API Endpoints
-
-Start server: `npm run backend` (runs on port 3001)
 
 ### Core Endpoints
 - `GET /health` - Health check
@@ -183,7 +164,7 @@ npm run test-transaction # Send test batch
 
 ## 🆕 Gasless Transactions (ERC-4337)
 
-FlashPay supports gasless transactions using Account Abstraction:
+VoidTx supports gasless transactions using Account Abstraction:
 
 1. Users create Smart Accounts (ERC-4337 compatible)
 2. Transactions are sponsored by a Paymaster (Pimlico)

@@ -233,7 +233,7 @@ function WalletConnector({ onConnected }) {
         className="mt-8 max-w-2xl w-full p-8 rounded-2xl bg-gradient-to-r from-purple-500/10 to-pink-500/10 border border-purple-500/20"
       >
         <h3 className="text-2xl font-bold text-center mb-4 text-cyan-300">🎁 Need Testnet Tokens?</h3>
-        <p className="text-center text-gray-300 mb-6">Get free testnet MON tokens to start using FlashPay:</p>
+        <p className="text-center text-gray-300 mb-6">Get free testnet MON tokens to start using VoidTx:</p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <motion.a 
             href="https://faucet.monad.xyz" 

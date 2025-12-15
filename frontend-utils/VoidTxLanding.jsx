@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
-import './FlashPayLanding.css';
+import './VoidTxLanding.css';
 
-export default function FlashPayLanding({ onGetStarted }) {
+export default function VoidTxLanding({ onGetStarted }) {
   return (
     <div className="landing-container">
       {/* Navbar */}
@@ -12,7 +12,7 @@ export default function FlashPayLanding({ onGetStarted }) {
         className="landing-navbar"
       >
         <h1 className="landing-logo">
-          ⚡ FlashPay
+          ⚡ VoidTx
         </h1>
         <div className="landing-nav-links">
           <a className="landing-nav-link" href="#features">Features</a>
@@ -41,7 +41,7 @@ export default function FlashPayLanding({ onGetStarted }) {
           transition={{ delay: 0.5, duration: 0.8 }}
           className="landing-hero-subtitle"
         >
-          FlashPay lets you send batch payments instantly with blockchain
+          VoidTx lets you send batch payments instantly with blockchain
           security and a beautiful, intuitive experience. Pay multiple recipients
           in a single transaction.
         </motion.p>
@@ -66,25 +66,21 @@ export default function FlashPayLanding({ onGetStarted }) {
 
       {/* Features Section */}
       <section id="features" className="landing-features">
-        <h3 className="landing-section-title">Why FlashPay?</h3>
+        <h3 className="landing-section-title">Why VoidTx?</h3>
 
         <div className="landing-features-grid">
           {[
             {
               icon: "⚡",
               title: "Instant Batch Payments",
-              desc: "Send payments to multiple recipients in a single transaction. Save time and gas fees.",
+              desc: "Send payments to multiple recipients in a single transaction. Save time.",
             },
             {
               icon: "🔒",
               title: "Blockchain Security",
               desc: "Built on Ethereum with smart contract security. Your transactions are transparent and immutable.",
             },
-            {
-              icon: "💎",
-              title: "Gas Optimized",
-              desc: "Batch multiple payments to save on gas costs. Real-time gas estimation before you send.",
-            },
+// Gas optimization feature removed as per user request
             {
               icon: "✨",
               title: "Simple Templates",
@@ -177,7 +173,7 @@ export default function FlashPayLanding({ onGetStarted }) {
           >
             <h4 className="landing-security-heading">🛡️ Built on Ethereum</h4>
             <p>
-              FlashPay smart contracts are deployed on Ethereum, ensuring your
+              VoidTx smart contracts are deployed on Ethereum, ensuring your
               payments are secured by the world's most trusted blockchain network.
               Every transaction is transparent and verifiable on-chain.
             </p>
@@ -211,10 +207,10 @@ export default function FlashPayLanding({ onGetStarted }) {
         >
           <h3 className="landing-cta-title">Ready to send your first batch payment?</h3>
           <p className="landing-cta-text">
-            Join thousands of users who trust FlashPay for their bulk payment needs
+            Join thousands of users who trust VoidTx for their bulk payment needs
           </p>
           <button onClick={onGetStarted} className="landing-cta-main-button">
-            Launch FlashPay App
+            Launch VoidTx App
           </button>
         </motion.div>
       </section>
@@ -223,7 +219,7 @@ export default function FlashPayLanding({ onGetStarted }) {
       <footer id="contact" className="landing-footer">
         <div className="landing-footer-content">
           <div className="landing-footer-brand">
-            <h4 className="landing-footer-logo">⚡ FlashPay</h4>
+            <h4 className="landing-footer-logo">⚡ VoidTx</h4>
             <p className="landing-footer-tagline">Batch payments made simple</p>
           </div>
           <div className="landing-footer-links">
@@ -234,7 +230,7 @@ export default function FlashPayLanding({ onGetStarted }) {
           </div>
         </div>
         <div className="landing-footer-copyright">
-          FlashPay © {new Date().getFullYear()} • Built with ❤️ on Ethereum
+          VoidTx © {new Date().getFullYear()} • Built with ❤️ on Ethereum
         </div>
       </footer>
     </div>

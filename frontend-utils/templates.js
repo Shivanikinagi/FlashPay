@@ -102,13 +102,13 @@ function saveCustomTemplate(template) {
   if (typeof window === 'undefined') return { success: false, error: 'Not in browser' };
   
   try {
-    const templates = JSON.parse(localStorage.getItem('flashpay_custom_templates') || '[]');
+    const templates = JSON.parse(localStorage.getItem('voidtx_custom_templates') || '[]');
     templates.push({
       ...template,
       id: `custom-${Date.now()}`,
       createdAt: new Date().toISOString()
     });
-    localStorage.setItem('flashpay_custom_templates', JSON.stringify(templates));
+    localStorage.setItem('voidtx_custom_templates', JSON.stringify(templates));
     return { success: true, templates };
   } catch (error) {
     return { success: false, error: error.message };
@@ -122,7 +122,7 @@ function loadCustomTemplates() {
   if (typeof window === 'undefined') return [];
   
   try {
-    return JSON.parse(localStorage.getItem('flashpay_custom_templates') || '[]');
+    return JSON.parse(localStorage.getItem('voidtx_custom_templates') || '[]');
   } catch {
     return [];
   }

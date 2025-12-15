@@ -1,5 +1,5 @@
 /**
- * FlashPay Main Application Component
+ * VoidTx Main Application Component
  * Complete UI for batch payments with wallet integration
  */
 
@@ -11,11 +11,11 @@ import BatchPaymentForm from './BatchPaymentForm';
 import PreviewScreen from './PreviewScreen';
 import TransactionStatus from './TransactionStatus';
 import ReceiptPage from './ReceiptPage';
-import FlashPayAPI from './apiClient';
-import { processTransactionHistory, calculateDashboardStats } from './dashboard';
-import GasComparison from './GasComparison';
+import VoidTxAPI from './apiClient';
+// Dashboard functionality removed as per user request
+// GasComparison component removed as per user request
 
-function FlashPayApp({ onBackToLanding }) {
+function VoidTxApp({ onBackToLanding }) {
   const [currentScreen, setCurrentScreen] = useState('wallet'); // 'wallet', 'form', 'preview', 'status', 'receipt', 'dashboard'
   const [walletAddress, setWalletAddress] = useState(null);
   const [provider, setProvider] = useState(null);
@@ -25,15 +25,14 @@ function FlashPayApp({ onBackToLanding }) {
   const [txStatus, setTxStatus] = useState(null);
   const [error, setError] = useState(null);
   const [backendConnected, setBackendConnected] = useState(false);
-  const [dashboardData, setDashboardData] = useState(null);
-  const [dashboardStats, setDashboardStats] = useState(null);
+  // Dashboard state variables removed as per user request
   const [txTimestamp, setTxTimestamp] = useState(null);
 
   // Check backend connection on mount
   useEffect(() => {
     const checkBackend = async () => {
       try {
-        await FlashPayAPI.checkHealth();
+        await VoidTxAPI.checkHealth();
         setBackendConnected(true);
       } catch (err) {
         console.warn('Backend not available:', err.message);
@@ -69,33 +68,7 @@ function FlashPayApp({ onBackToLanding }) {
 
 
 
-  // Load dashboard data
-  const loadDashboard = async () => {
-    try {
-      const { events } = await FlashPayAPI.getAllEvents();
-      const { transactions } = processTransactionHistory(events);
-      setDashboardData(transactions);
-      const stats = calculateDashboardStats(transactions);
-      setDashboardStats(stats);
-    } catch (err) {
-      console.error('Failed to load dashboard:', err);
-      // Show empty dashboard on error
-      setDashboardData([]);
-      setDashboardStats({
-        totalTransactions: 0,
-        totalRecipients: 0,
-        totalVolume: '0',
-        successRate: '0%',
-        averageAmount: '0'
-      });
-    }
-  };
-
-  // Handle dashboard view
-  const handleViewDashboard = () => {
-    loadDashboard();
-    setCurrentScreen('dashboard');
-  };
+  // Dashboard functionality removed as per user request
 
   // Handle preview confirmation - execute transaction
   const handleConfirmPayment = async (finalRecipients) => {
@@ -108,7 +81,7 @@ function FlashPayApp({ onBackToLanding }) {
       const CONTRACT_ADDRESS = '0x37D4617a10fC421e920d8f921a2BbcD24d5d734f';
       
       // Fetch ABI dynamically
-      const abiResponse = await fetch('/deployments/FlashPay-ABI.json');
+      const abiResponse = await fetch('/deployments/VoidTx-ABI.json');
       const CONTRACT_ABI = await abiResponse.json();
 
       // Prepare payment data for backend estimation
@@ -120,7 +93,7 @@ function FlashPayApp({ onBackToLanding }) {
       // Estimate cost using backend if available
       if (backendConnected) {
         try {
-          const estimate = await FlashPayAPI.estimateCost(paymentData);
+          const estimate = await VoidTxAPI.estimateCost(paymentData);
           console.log('Cost estimate from backend:', estimate);
         } catch (err) {
           console.warn('Could not get estimate from backend:', err.message);
@@ -253,32 +226,15 @@ function FlashPayApp({ onBackToLanding }) {
           )}
           <div>
             <h1 className="text-3xl font-bold tracking-wide bg-gradient-to-r from-blue-400 to-cyan-300 text-transparent bg-clip-text">
-              FlashPay
+              VoidTx
             </h1>
             <p className="text-sm text-gray-400">Batch Payments Made Easy</p>
           </div>
         </div>
-        {walletAddress && (
-          <motion.button 
-            onClick={handleViewDashboard}
-            whileHover={{ scale: 1.05, boxShadow: "0 0 25px rgba(6, 182, 212, 0.5)" }}
-            whileTap={{ scale: 0.95 }}
-            className="bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 text-black font-bold px-6 py-3 rounded-xl transition-all shadow-lg"
-            title="View transaction history and statistics"
-          >
-            📊 Dashboard
-          </motion.button>
-        )}
+        {/* Dashboard button removed as per user request */}
       </motion.nav>
 
-      {/* Gas Comparison Panel - Show on main screens */}
-      {(currentScreen === 'wallet' || currentScreen === 'form') && (
-        <GasComparison 
-          recipientCount={recipients.length > 0 ? recipients.length : 10} 
-          provider={provider}
-          isVisible={true}
-        />
-      )}
+      {/* Gas Comparison Panel removed as per user request */}
 
       <main className="px-6 py-8 max-w-7xl mx-auto">
         {currentScreen === 'wallet' && (
@@ -344,13 +300,7 @@ function FlashPayApp({ onBackToLanding }) {
           />
         )}
 
-        {currentScreen === 'dashboard' && (
-          <DashboardScreen
-            data={dashboardData}
-            stats={dashboardStats}
-            onBack={() => setCurrentScreen('form')}
-          />
-        )}
+        {/* Dashboard screen removed as per user request */}
       </main>
 
       {error && currentScreen !== 'status' && (
@@ -367,149 +317,6 @@ function FlashPayApp({ onBackToLanding }) {
   );
 }
 
-// ============ Dashboard Screen Component ============
-function DashboardScreen({ data, stats, onBack }) {
-  const [filteredData, setFilteredData] = useState(data || []);
-  const [searchQuery, setSearchQuery] = useState('');
+// Dashboard Screen Component removed as per user request
 
-  useEffect(() => {
-    if (!data) return;
-    
-    const query = searchQuery.toLowerCase();
-    const filtered = data.filter(tx =>
-      tx.txHash?.toLowerCase().includes(query) ||
-      tx.sender?.toLowerCase().includes(query)
-    );
-    setFilteredData(filtered);
-  }, [searchQuery, data]);
-
-  if (!stats) {
-    return (
-      <motion.div 
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        className="flex items-center justify-center min-h-[400px]"
-      >
-        <div className="text-center">
-          <div className="animate-spin text-6xl mb-4">⏳</div>
-          <p className="text-gray-300 text-lg">Loading dashboard...</p>
-        </div>
-      </motion.div>
-    );
-  }
-
-  return (
-    <motion.div 
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      className="space-y-8"
-    >
-      <div className="flex justify-between items-center">
-        <h2 className="text-4xl font-bold bg-gradient-to-r from-cyan-300 to-blue-400 text-transparent bg-clip-text">📊 Transaction Dashboard</h2>
-        <button 
-          onClick={onBack}
-          className="bg-white/5 hover:bg-white/10 border border-white/10 px-6 py-2 rounded-xl transition-all"
-        >
-          ← Back
-        </button>
-      </div>
-
-      {/* Statistics Cards */}
-      <div className="grid md:grid-cols-5 gap-6">
-        {[
-          { value: stats.totalTransactions, label: 'Total Transactions' },
-          { value: stats.totalRecipients, label: 'Recipients Paid' },
-          { value: `${stats.totalVolume} ETH`, label: 'Total Volume' },
-          { value: stats.successRate, label: 'Success Rate' },
-          { value: `${stats.averageAmount} ETH`, label: 'Avg Amount' }
-        ].map((stat, i) => (
-          <motion.div
-            key={i}
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: i * 0.1 }}
-            whileHover={{ scale: 1.05 }}
-            className="p-6 rounded-2xl bg-white/5 border border-white/10 shadow-xl hover:shadow-cyan-400/20 transition-all"
-          >
-            <div className="text-3xl font-bold text-cyan-300 mb-2">{stat.value}</div>
-            <div className="text-sm text-gray-400">{stat.label}</div>
-          </motion.div>
-        ))}
-      </div>
-
-      {/* Search Bar */}
-      <div>
-        <input
-          type="text"
-          placeholder="🔍 Search by tx hash or sender address..."
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          className="w-full px-6 py-4 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-cyan-500 transition-all"
-        />
-      </div>
-
-      {/* Transactions Table */}
-      <div className="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-xl">
-        <h3 className="text-2xl font-bold mb-6 text-cyan-300">Recent Transactions</h3>
-        {filteredData.length === 0 ? (
-          <div className="text-center py-12">
-            <p className="text-gray-400 text-lg">No transactions found</p>
-          </div>
-        ) : (
-          <div className="overflow-x-auto">
-            <table className="w-full">
-              <thead>
-                <tr className="border-b border-white/10 text-left">
-                  <th className="pb-4 text-gray-400 font-semibold">Tx Hash</th>
-                  <th className="pb-4 text-gray-400 font-semibold">Sender</th>
-                  <th className="pb-4 text-gray-400 font-semibold">Recipients</th>
-                  <th className="pb-4 text-gray-400 font-semibold">Amount</th>
-                  <th className="pb-4 text-gray-400 font-semibold">Status</th>
-                  <th className="pb-4 text-gray-400 font-semibold">Time</th>
-                </tr>
-              </thead>
-              <tbody>
-                {filteredData.slice(0, 20).map((tx, idx) => (
-                  <motion.tr 
-                    key={idx}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: idx * 0.05 }}
-                    className="border-b border-white/5 hover:bg-white/5 transition-colors"
-                  >
-                    <td className="py-4 font-mono">
-                      <a 
-                        href={`https://testnet.monadvision.com/tx/${tx.txHash}`} 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="text-cyan-400 hover:text-cyan-300"
-                      >
-                        {tx.txHash?.slice(0, 10)}...
-                      </a>
-                    </td>
-                    <td className="py-4 font-mono text-gray-300">{tx.sender?.slice(0, 10)}...</td>
-                    <td className="py-4 text-gray-300">{tx.successCount || 0}</td>
-                    <td className="py-4 text-gray-300">{(parseFloat(tx.totalAmount || 0) / 1e18).toFixed(4)} ETH</td>
-                    <td className="py-4">
-                      <span className={`px-3 py-1 rounded-full text-xs font-semibold ${
-                        tx.status === 'success' ? 'bg-green-500/20 text-green-400' : 'bg-yellow-500/20 text-yellow-400'
-                      }`}>
-                        {tx.status}
-                      </span>
-                    </td>
-                    <td className="py-4 text-gray-300">{new Date(tx.timestamp).toLocaleDateString()}</td>
-                  </motion.tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        )}
-        {filteredData.length > 20 && (
-          <p className="text-center text-gray-400 mt-6">Showing 20 of {filteredData.length} transactions</p>
-        )}
-      </div>
-    </motion.div>
-  );
-}
-
-export default FlashPayApp;
+export default VoidTxApp;

@@ -122,7 +122,7 @@ Permissionless SDK
         ↓
     Sepolia Testnet
         ↓
-    FlashPay Contract
+    VoidTx Contract
 ```
 
 ---
@@ -212,4 +212,4 @@ You've successfully integrated ERC-4337 when:
 ✅ Transactions confirmed on Sepolia  
 ✅ Standard ERC-4337 compliance
 
-**Result**: Fully decentralized gasless FlashPay using open standards! 🚀
+**Result**: Fully decentralized gasless VoidTx using open standards! 🚀

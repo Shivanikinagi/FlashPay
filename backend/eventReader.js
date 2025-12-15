@@ -4,7 +4,7 @@ const path = require("path");
 require("dotenv").config();
 
 /**
- * Helper script to read and parse FlashPay contract events
+ * Helper script to read and parse VoidTx contract events
  * Useful for tracking payment history and debugging
  */
 
@@ -16,7 +16,7 @@ class EventReader {
   loadContract() {
     try {
       // Load ABI
-      const abiPath = path.join(__dirname, "..", "deployments", "FlashPay-ABI.json");
+      const abiPath = path.join(__dirname, "..", "deployments", "VoidTx-ABI.json");
       this.contractABI = JSON.parse(fs.readFileSync(abiPath, "utf8"));
 
       // Get contract address

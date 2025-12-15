@@ -25,7 +25,7 @@ let contractABI, contractAddress, provider, contract;
 function initializeContract() {
   try {
     // Load ABI
-    const abiPath = path.join(__dirname, "..", "deployments", "FlashPay-ABI.json");
+    const abiPath = path.join(__dirname, "..", "deployments", "VoidTx-ABI.json");
     if (!fs.existsSync(abiPath)) {
       console.warn("⚠️  ABI file not found. Some endpoints may not work.");
       return false;
@@ -79,7 +79,7 @@ function initializeContract() {
 app.get("/", (req, res) => {
   res.json({
     status: "online",
-    service: "FlashPay Backend API",
+    service: "VoidTx Backend API",
     version: "1.0.0",
     endpoints: {
       health: "GET /health",
@@ -321,7 +321,7 @@ app.get("/api/transaction/:hash", async (req, res) => {
 });
 
 /**
- * Generate QR code for joining FlashPay
+ * Generate QR code for joining VoidTx
  */
 app.post("/api/qr", async (req, res) => {
   try {
@@ -335,7 +335,7 @@ app.post("/api/qr", async (req, res) => {
 
     // If type is 'join', create a join link
     if (type === "join") {
-      const baseUrl = req.body.baseUrl || "https://flashpay.app";
+      const baseUrl = req.body.baseUrl || "https://voidtx.app";
       qrData = `${baseUrl}/join?contract=${contractAddress}&network=monad-testnet`;
     }
 
@@ -392,7 +392,7 @@ process.on('unhandledRejection', (reason, promise) => {
 });
 
 app.listen(PORT, () => {
-  console.log("\n🚀 FlashPay Backend Server");
+  console.log("\n🚀 VoidTx Backend Server");
   console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
   console.log(`✅ Server running on http://localhost:${PORT}`);
   console.log(`📝 Contract: ${contractAddress || "not configured"}`);

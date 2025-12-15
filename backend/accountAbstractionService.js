@@ -1,5 +1,5 @@
 /**
- * ERC-4337 Account Abstraction Service for FlashPay
+ * ERC-4337 Account Abstraction Service for VoidTx
  * Enables gasless transactions using Paymaster on Sepolia testnet
  * 
  * Features:
@@ -69,7 +69,7 @@ class AccountAbstractionService {
         entryPoint: '0x5FF137D4b0FDCD49DcA30c7CF57E578a026d2789',
       });
 
-      // Load FlashPay contract info
+      // Load VoidTx contract info
       this.loadContractInfo();
 
       this.initialized = true;
@@ -84,21 +84,21 @@ class AccountAbstractionService {
   }
 
   /**
-   * Load FlashPay contract ABI and address
+   * Load VoidTx contract ABI and address
    */
   loadContractInfo() {
     try {
-      const abiPath = path.join(__dirname, '..', 'deployments', 'FlashPay-ABI.json');
+      const abiPath = path.join(__dirname, '..', 'deployments', 'VoidTx-ABI.json');
       this.contractABI = JSON.parse(fs.readFileSync(abiPath, 'utf8'));
 
       const deploymentPath = path.join(__dirname, '..', 'deployments', 'sepolia-deployment.json');
       const deployment = JSON.parse(fs.readFileSync(deploymentPath, 'utf8'));
       this.contractAddress = deployment.contractAddress;
 
-      console.log(`📋 Loaded FlashPay contract: ${this.contractAddress}`);
+      console.log(`📋 Loaded VoidTx contract: ${this.contractAddress}`);
     } catch (error) {
       console.error('⚠️  Failed to load contract info:', error.message);
-      throw new Error('Contract information not found. Please deploy FlashPay to Sepolia first.');
+      throw new Error('Contract information not found. Please deploy VoidTx to Sepolia first.');
     }
   }
 
@@ -116,7 +116,7 @@ class AccountAbstractionService {
       console.log(`🔐 Creating Smart Account for user: ${userId}`);
 
       // Generate a deterministic private key for the user (in production, use secure key management)
-      const userSeed = ethers.keccak256(ethers.toUtf8Bytes(`flashpay-user-${userId}`));
+      const userSeed = ethers.keccak256(ethers.toUtf8Bytes(`voidtx-user-${userId}`));
       const signer = privateKeyToAccount(userSeed);
 
       // Create Simple Account (ERC-4337)
@@ -151,7 +151,7 @@ class AccountAbstractionService {
   }
 
   /**
-   * Execute gasless FlashPay batch payment
+   * Execute gasless VoidTx batch payment
    * @param {string} userId - User identifier
    * @param {Array} payments - Array of {recipient: address, amount: string (in ETH)}
    * @returns {Object} Transaction result
@@ -176,7 +176,7 @@ class AccountAbstractionService {
       }
 
       // Generate user signer
-      const userSeed = ethers.keccak256(ethers.toUtf8Bytes(`flashpay-user-${userId}`));
+      const userSeed = ethers.keccak256(ethers.toUtf8Bytes(`voidtx-user-${userId}`));
       const signer = privateKeyToAccount(userSeed);
 
       // Create Simple Account
@@ -202,7 +202,7 @@ class AccountAbstractionService {
         },
       });
 
-      // Prepare FlashPay calldata
+      // Prepare VoidTx calldata
       const formattedPayments = payments.map(p => ({
         recipient: p.recipient,
         amount: ethers.parseEther(p.amount.toString()),
@@ -267,7 +267,7 @@ class AccountAbstractionService {
         await this.initialize();
       }
 
-      const userSeed = ethers.keccak256(ethers.toUtf8Bytes(`flashpay-user-${userId}`));
+      const userSeed = ethers.keccak256(ethers.toUtf8Bytes(`voidtx-user-${userId}`));
       const signer = privateKeyToAccount(userSeed);
 
       const simpleAccount = await signerToSimpleSmartAccount(this.publicClient, {

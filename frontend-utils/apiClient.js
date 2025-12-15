@@ -1,12 +1,12 @@
 /**
- * FlashPay API Client
+ * VoidTx API Client
  * Centralized API communication with backend server
  */
 
 // Get API base URL from environment or default
 const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001';
 
-class FlashPayAPI {
+class VoidTxAPI {
   /**
    * Health check - verify backend is running
    */
@@ -227,4 +227,4 @@ class FlashPayAPI {
   }
 }
 
-export default FlashPayAPI;
+export default VoidTxAPI;

@@ -12,7 +12,7 @@ import {
   joinViaNFCTap,
   getRecommendedJoinMethod
 } from './nfcManager';
-import FlashPayAPI from './apiClient';
+import VoidTxAPI from './apiClient';
 
 // ============ NFC/QR Join Creator Component ============
 function NFCJoinCreator({ walletAddress, onRecipientsUpdate }) {
@@ -37,7 +37,7 @@ function NFCJoinCreator({ walletAddress, onRecipientsUpdate }) {
     
     const interval = setInterval(async () => {
       try {
-        const data = await FlashPayAPI.getSessionRecipients(sessionId);
+        const data = await VoidTxAPI.getSessionRecipients(sessionId);
         setRecipients(data.recipients);
         onRecipientsUpdate(data.recipients);
       } catch (err) {
@@ -75,7 +75,7 @@ function NFCJoinCreator({ walletAddress, onRecipientsUpdate }) {
   
   const closeSession = async () => {
     try {
-      await FlashPayAPI.closeSession(sessionId, walletAddress);
+      await VoidTxAPI.closeSession(sessionId, walletAddress);
       setStatus('closed');
     } catch (err) {
       console.error('Failed to close session:', err);

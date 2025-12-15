@@ -36,7 +36,7 @@ router.post('/create', (req, res) => {
     // Generate join links - web URL and deep link
     const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:5173';
     const webLink = `${frontendUrl}/join/${sessionId}`;
-    const deepLink = `flashpay://join/${sessionId}`;
+    const deepLink = `voidtx://join/${sessionId}`;
     const universalLink = `${frontendUrl}?session=${sessionId}`;
     const joinLink = webLink; // Default for QR code
     

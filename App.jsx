@@ -1,13 +1,13 @@
 /**
  * Main App Entry Point - React
- * This is the root component that renders FlashPayApp
+ * This is the root component that renders VoidTxApp
  */
 
 import React from 'react';
-import FlashPayApp from './frontend-utils/FlashPayApp';
+import VoidTxApp from './frontend-utils/VoidTxApp';
 
 function App() {
-  return <FlashPayApp />;
+  return <VoidTxApp />;
 }
 
 export default App;

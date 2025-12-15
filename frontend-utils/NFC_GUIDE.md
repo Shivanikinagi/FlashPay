@@ -172,7 +172,7 @@ function JoinPage() {
 // What gets written to NFC tag
 {
   recordType: "url",
-  data: "https://flashpay.app/join/abc-123-def"
+  data: "https://voidtx.app/join/abc-123-def"
 }
 
 // Recipient's phone opens this URL automatically

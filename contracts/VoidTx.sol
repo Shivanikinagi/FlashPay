@@ -2,11 +2,11 @@
 pragma solidity ^0.8.20;
 
 /**
- * @title FlashPay
+ * @title VoidTx
  * @dev Batch payment contract with safe transfer handling and detailed event logging
  * @notice Allows users to send payments to multiple recipients in a single transaction
  */
-contract FlashPay {
+contract VoidTx {
     
     // ============ Events ============
     

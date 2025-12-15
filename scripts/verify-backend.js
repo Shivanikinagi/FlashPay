@@ -85,7 +85,7 @@ async function testEndpoint(method, path, body = null) {
 }
 
 async function runTests() {
-  log('\n🧪 FlashPay Backend Integration Verification\n', 'bold');
+  log('\n🧪 VoidTx Backend Integration Verification\n', 'bold');
   log(`Testing API at: ${API_URL}\n`, 'blue');
 
   let passed = 0;

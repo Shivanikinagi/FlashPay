@@ -5,7 +5,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import FlashPayAPI from './apiClient';
+import VoidTxAPI from './apiClient';
 
 function TransactionStatus({ txHash, status, error, onReset }) {
   const [elapsedTime, setElapsedTime] = useState(0);
@@ -19,7 +19,7 @@ function TransactionStatus({ txHash, status, error, onReset }) {
 
     const pollTxStatus = async () => {
       try {
-        const details = await FlashPayAPI.getTransactionStatus(txHash);
+        const details = await VoidTxAPI.getTransactionStatus(txHash);
         setTxDetails(details);
         if (details.confirmations) {
           setBlockConfirmations(details.confirmations);
