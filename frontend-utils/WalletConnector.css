@@ -1,0 +1,296 @@
+/* Wallet Connector - Landing Page Theme */
+
+.wallet-connector {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.wallet-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 2rem;
+  padding: 3rem 2.5rem;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+
+.wallet-icon {
+  font-size: 4rem;
+  margin-bottom: 1.5rem;
+  filter: drop-shadow(0 10px 20px rgba(6, 182, 212, 0.3));
+}
+
+.wallet-card h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  background: linear-gradient(to right, #60a5fa, #67e8f9);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.wallet-subtitle {
+  color: #d1d5db;
+  font-size: 1.125rem;
+  margin-bottom: 2.5rem;
+  line-height: 1.6;
+}
+
+.wallet-options {
+  margin: 2rem 0;
+}
+
+.wallet-btn {
+  width: 100%;
+  padding: 0;
+  border: none;
+  background: linear-gradient(135deg, rgba(6, 182, 212, 0.15), rgba(59, 130, 246, 0.15));
+  border: 1px solid rgba(6, 182, 212, 0.3);
+  border-radius: 1.25rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  position: relative;
+}
+
+.wallet-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(6, 182, 212, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.wallet-btn:hover::before {
+  left: 100%;
+}
+
+.wallet-btn-content {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.5rem 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+.wallet-icon-wrapper {
+  font-size: 3rem;
+  background: linear-gradient(135deg, #06b6d4, #3b82f6);
+  border-radius: 1rem;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 30px rgba(6, 182, 212, 0.3);
+}
+
+.wallet-btn-text {
+  flex: 1;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.wallet-name {
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 700;
+  display: block;
+}
+
+.wallet-desc {
+  color: #d1d5db;
+  font-size: 0.95rem;
+  display: block;
+}
+
+.wallet-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.wallet-btn.connecting {
+  background: linear-gradient(135deg, rgba(6, 182, 212, 0.25), rgba(59, 130, 246, 0.25));
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+.wallet-missing {
+  margin-top: 1.5rem;
+  padding: 1.25rem;
+  background: rgba(251, 191, 36, 0.1);
+  border: 1px solid rgba(251, 191, 36, 0.3);
+  border-radius: 1rem;
+  color: #fbbf24;
+}
+
+.wallet-missing p {
+  margin: 0 0 0.75rem 0;
+  font-weight: 600;
+  font-size: 1.05rem;
+}
+
+.install-link {
+  display: inline-block;
+  padding: 0.625rem 1.5rem;
+  background: linear-gradient(135deg, #fbbf24, #f59e0b);
+  color: #000;
+  text-decoration: none;
+  border-radius: 0.75rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(251, 191, 36, 0.3);
+}
+
+.install-link:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(251, 191, 36, 0.5);
+}
+
+.error-message {
+  margin-top: 1.5rem;
+  padding: 1.25rem 1.5rem;
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  border-radius: 1rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  text-align: left;
+}
+
+.error-icon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.error-message strong {
+  color: #fca5a5;
+  display: block;
+  margin-bottom: 0.25rem;
+  font-size: 1.1rem;
+}
+
+.error-message p {
+  color: #fecaca;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.wallet-info {
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: #d1d5db;
+  font-size: 0.95rem;
+  text-align: left;
+  padding: 0.75rem 1rem;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.info-icon {
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+/* Faucet Info */
+.faucet-info {
+  margin-top: 2rem;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 1.5rem;
+  backdrop-filter: blur(20px);
+  text-align: center;
+}
+
+.faucet-info h3 {
+  color: white;
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+
+.faucet-info > p {
+  color: #d1d5db;
+  margin-bottom: 1.5rem;
+  font-size: 1.05rem;
+}
+
+.faucet-links {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.faucet-link {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem 1.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 1rem;
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.05rem;
+  transition: all 0.3s ease;
+}
+
+.faucet-link:hover {
+  background: rgba(6, 182, 212, 0.15);
+  border-color: rgba(6, 182, 212, 0.3);
+  box-shadow: 0 10px 30px rgba(6, 182, 212, 0.2);
+}
+
+.faucet-icon {
+  font-size: 1.75rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .wallet-card {
+    padding: 2rem 1.5rem;
+  }
+
+  .wallet-card h2 {
+    font-size: 2rem;
+  }
+
+  .wallet-btn-content {
+    padding: 1.25rem 1.5rem;
+  }
+
+  .wallet-icon-wrapper {
+    font-size: 2.5rem;
+    padding: 0.75rem;
+  }
+
+  .wallet-name {
+    font-size: 1.25rem;
+  }
+}
